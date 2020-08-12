@@ -194,6 +194,13 @@ class FFStream:
 
         return size
 
+    def rotation(self):
+        """
+        Returns the video rotation if the stream is a video stream.
+        Returns 0 if it is not a video stream.
+        """
+        return int(self.__dict__.get('TAG:rotate', '0'))
+
     def pixel_format(self):
         """
         Returns a string representing the pixel format of the video stream. e.g. yuv420p.
