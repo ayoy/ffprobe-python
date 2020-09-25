@@ -269,3 +269,9 @@ class FFStream:
             return int(self.__dict__.get('bit_rate', ''))
         except ValueError:
             raise FFProbeError('None integer bit_rate')
+
+    def comment(self):
+        """
+        Returns the 'comment' Metadata tag contents.
+        """
+        return self.__dict__.get('TAG:comment', None)
