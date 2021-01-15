@@ -229,7 +229,11 @@ class FFStream:
             try:
                 duration = float(self.__dict__.get('duration', ''))
             except ValueError:
-                raise FFProbeError('None numeric duration')
+                try:
+                    duration_str = self.__dict__.get('TAG:DURATION', '').split(':')
+                    duration = int(duration_str[0]) * 3600 + int(duration_str[1]) * 60 + float(duration_str[2])
+                except ValueError:
+                    raise FFProbeError('None numeric duration')
         else:
             duration = 0.0
 
